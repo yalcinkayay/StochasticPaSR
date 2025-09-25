@@ -1,0 +1,21 @@
+Reaction method [LFR / ODE]: LFR
+Mixing frequency [Hz]: [1000.0, 1100.0]
+Number of iteration: 500
+Number of particles: 1000
+Unburnt temperature [K]: 300.0
+Unburnt pressure [Pa]: one_atm
+Phi constant for IEM: 2.0
+Time interval: 1e-6
+Flame type [nonpremixed / premixed]: nonpremixed
+Mixing model [KerM / MC / IEM]: KerM
+Mechanism path: Mech/h2_sandiego.yaml
+Sigma_k constant for KerM: 0.2
+
+fuel:
+  H2: 0.5
+  N2: 0.5
+
+oxidizer:
+  O2: 0.15
+  N2: 0.75
+  H2O: 0.1
