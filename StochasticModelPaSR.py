@@ -37,18 +37,16 @@ reaction_method = params["Reaction method [LFR / ODE]"]
 fuel = params["fuel"]
 oxidizer = params["oxidizer"]
 
-# === Cantera ===
-gas = ct.Solution(mech)
-
-# === Initial state ===
-Psi_unburnt, gas = get_unburnt_state(gas, T_unburnt, p0, fuel, oxidizer, flame_type)
-Psi_particles = get_unburnt_state_equilibrium_particles(mech, gas, T_unburnt, p0, Np, fuel, oxidizer)
-
 mixing_model_parameter = {"C_phi": C_phi, "sigma_k": sigma_k}
-mw = gas.molecular_weights
 
 for omega_turb in omega_turb_list:
     print(f"=== Running simulation for mixing frequency = {omega_turb} Hz ===")
+    # === Cantera ===
+    gas = ct.Solution(mech)
+    # === Initial state ===
+    Psi_unburnt, gas = get_unburnt_state(gas, T_unburnt, p0, fuel, oxidizer, flame_type)
+    Psi_particles = get_unburnt_state_equilibrium_particles(mech, gas, T_unburnt, p0, Np, fuel, oxidizer)
+    mw = gas.molecular_weights
     residence_time = 1 / omega_turb
     N_replace = floor(Np * dt / residence_time)
     nx, ny = Psi_particles.shape
